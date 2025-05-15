@@ -10,7 +10,7 @@ To launch the container:
 docker-compose up -d
 ```
 
-To delete all the containers with volumes
+To delete all the containers with volumes:
 ```
 docker-compose down -v
 ```
