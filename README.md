@@ -14,3 +14,7 @@ To delete all the containers with volumes:
 ```
 docker-compose down -v
 ```
+Now you can bring up MySQL with a simple command—the only environment variable you need is the wordpress database user’s password:
+```
+DATABASE_USER_PASSWORD=abc123 docker compose up -d
+``` 
