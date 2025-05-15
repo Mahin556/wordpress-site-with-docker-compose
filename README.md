@@ -4,3 +4,13 @@ WordPress is the most popular website content management system (CMS). It’s a 
 WordPress application container – Serves WordPress using PHP and the Apache web server.
 
 MySQL database container – Runs the database server that the WordPress container will connect to.
+
+To launch the container:
+```
+docker-compose up -d
+```
+
+To delete all the containers with volumes
+```
+docker-compose down -v
+```
