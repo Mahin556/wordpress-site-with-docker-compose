@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  
+  wordpress:
+    image: wordpress:${WORDPRESS_TAG:-6.2}
+    environment:
+      WORDPRESS_DB_HOST: "mysql_cont"
+      WORDPRESS_DB_USER: "wordpress"
+      WORDPRESS_DB_PASSWORD: ${DATABASE_USER_PASSWORD}
+      WORDPRESS_DB_NAME: "wordpress"
+    depends_on:
+      - mysql
+    ports:
+      - ${WORDPRESS_PORT:-80}:80
+    volumes:
+      - wordpress-data:/var/www/html/
+    restart: always
+
+  mysql:
+    container_name: mysql_cont
+    image: mysql:9.0
+    environment:
+      MYSQL_DATABASE: "wordpress"
+      MYSQL_USER: "wordpress"
+      MYSQL_PASSWORD: ${DATABASE_USER_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+networks:
+  mynet:
+
+volumes:
+  mysql-data:
+  wordpress-data:
