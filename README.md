@@ -5,7 +5,7 @@ WordPress application container – Serves WordPress using PHP and the Apache we
 
 MySQL database container – Runs the database server that the WordPress container will connect to.
 
-To launch the container:
+To launch the containers:
 ```
 docker-compose up -d
 ```
